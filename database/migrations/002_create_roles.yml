@@ -1,0 +1,22 @@
+date: '2016-07-01 00:00:00'
+author: Groovey
+description: User roles (super, admin, user, manager, tester)
+
+up: >
+
+    CREATE TABLE `roles` (
+    `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+    `name` varchar(255) NOT NULL,
+    `description` TEXT DEFAULT NULL
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+    INSERT INTO `roles` (`id`, `name`, `description`) VALUES
+    (1, 'Admin', 'Administrator rights'),
+    (2, 'User', 'User rights'),
+    (3, 'Manager', 'Manager rights'),
+    (4, 'Tester', 'Tester rights'),
+    (5, 'Vistor', 'Visitor rights');
+
+down: >
+
+    DROP TABLE `roles`;

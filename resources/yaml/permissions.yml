@@ -1,0 +1,2 @@
+sample: [view, edit, delete]
+template: [update, edit, delete]

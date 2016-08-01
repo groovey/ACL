@@ -1,0 +1,18 @@
+date: '2016-07-01 00:00:00'
+author: Groovey
+description: A collection of user permissions base on a role.
+
+up: >
+
+    CREATE TABLE `permissions` (
+     `role_id` int(11) NOT NULL,
+     `node` varchar(50) NOT NULL,
+     `item` varchar(50) NOT NULL,
+     `status` enum('allow','deny') NOT NULL DEFAULT 'deny'
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+    ALTER TABLE `permissions` ADD UNIQUE KEY `index` (`role_id`, `node`, `item`);
+
+down: >
+
+    DROP TABLE `permissions`;
