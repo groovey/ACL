@@ -22,7 +22,6 @@ $app['debug'] = true;
 
 $app->register(new TraceServiceProvider());
 $app->register(new ACLServiceProvider());
-
 $app->register(new ORMServiceProvider(), [
     'db.connection' => [
         'host'      => 'localhost',
