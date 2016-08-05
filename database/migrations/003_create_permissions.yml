@@ -8,7 +8,7 @@ up: >
      `role_id` int(11) NOT NULL,
      `node` varchar(50) NOT NULL,
      `item` varchar(50) NOT NULL,
-     `status` enum('allow','deny') NOT NULL DEFAULT 'deny'
+     `value` enum('allow','deny') NOT NULL DEFAULT 'deny'
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
     ALTER TABLE `permissions` ADD UNIQUE KEY `index` (`role_id`, `node`, `item`);

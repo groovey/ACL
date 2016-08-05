@@ -17,8 +17,11 @@
         "groovey/support" : "dev-master"
     },
     "autoload": {
+        "files": [
+            "src/helper.php"
+        ],
         "psr-4": {
-            "Groovey\\Validator\\": "src"
+            "Groovey\\ACL\\": "src"
         }
     }
 }

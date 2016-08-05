@@ -10,13 +10,13 @@ class Permissions extends Seeder
 
         $this->define('permissions', function ($data) use ($faker) {
 
-            $status = ['allow', 'deny'];
+            $value = ['allow', 'deny'];
 
             return [
-                'role_id'    => $data->role_id,
-                'node'       => $data->node,
-                'item'       => $data->item,
-                'status'     => $status[array_rand($status)],
+                'role_id' => $data->role_id,
+                'node'    => $data->node,
+                'item'    => $data->item,
+                'value'   => $value[array_rand($value)],
             ];
 
         }, $truncate = true);
