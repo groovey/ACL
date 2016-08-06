@@ -5,7 +5,7 @@ namespace Groovey\ACL;
 use Pimple\Container;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
-use Groovey\ORM\DB;
+use Groovey\DB\DB;
 
 class ACL
 {
