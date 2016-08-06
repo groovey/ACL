@@ -4,7 +4,7 @@ use Silex\Application;
 use Symfony\Component\Console\Application as ConsoleApplication;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\Console\Command\Command;
-use Groovey\ORM\Providers\ORMServiceProvider;
+use Groovey\DB\Providers\DBServiceProvider;
 use Groovey\Support\Providers\TraceServiceProvider;
 use Groovey\ACL\Providers\ACLServiceProvider;
 use Groovey\Migration\Commands\Init;
@@ -26,8 +26,7 @@ class ACLTest extends PHPUnit_Framework_TestCase
 
         $app->register(new TraceServiceProvider());
         $app->register(new ACLServiceProvider());
-
-        $app->register(new ORMServiceProvider(), [
+        $app->register(new DBServiceProvider(), [
             'db.connection' => [
                 'host'      => 'localhost',
                 'driver'    => 'mysql',

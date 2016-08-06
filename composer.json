@@ -12,7 +12,7 @@
         "silex/silex" : "~2.0",
         "symfony/yaml" : "~3.0",
         "groovey/migration" : "dev-master",
-        "groovey/orm" : "dev-master",
+        "groovey/db" : "dev-master",
         "groovey/seeder" : "dev-master",
         "groovey/support" : "dev-master"
     },

@@ -13,7 +13,7 @@ Groovey Access Control List Package
 require_once __DIR__.'/vendor/autoload.php';
 
 use Silex\Application;
-use Groovey\ORM\Providers\ORMServiceProvider;
+use Groovey\DB\Providers\DBServiceProvider;
 use Groovey\Support\Providers\TraceServiceProvider;
 use Groovey\ACL\Providers\ACLServiceProvider;
 
@@ -22,7 +22,7 @@ $app['debug'] = true;
 
 $app->register(new TraceServiceProvider());
 $app->register(new ACLServiceProvider());
-$app->register(new ORMServiceProvider(), [
+$app->register(new DBServiceProvider(), [
     'db.connection' => [
         'host'      => 'localhost',
         'driver'    => 'mysql',
