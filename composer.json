@@ -1,7 +1,7 @@
 {
     "name": "groovey/acl",
     "description": "Groovey ACL Package.",
-    "keywords": ["silex", "silex 2"],
+    "keywords": ["silex", "groovey"],
     "authors": [
         {
             "name": "Harold Kim Cantil",
