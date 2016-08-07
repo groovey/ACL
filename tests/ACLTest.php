@@ -40,10 +40,6 @@ class ACLTest extends PHPUnit_Framework_TestCase
             ],
         ]);
 
-        $app['db']->connection();
-
-        $container['db'] = $this->app['db'];
-
         $app['tester']->add([
                 new Init($app),
                 new Reset($app),
@@ -103,7 +99,6 @@ class ACLTest extends PHPUnit_Framework_TestCase
         $app = $this->app;
         $app['acl']::setPermission('sample.view', 'value', 'allow');
         $status = $app['acl']->allow('sample.view');
-
         $this->assertTrue($status);
     }
 
@@ -112,7 +107,6 @@ class ACLTest extends PHPUnit_Framework_TestCase
         $app = $this->app;
         $app['acl']::setPermission('sample.view', 'value', 'deny');
         $status = $app['acl']->deny('sample.view');
-
         $this->assertTrue($status);
     }
 
