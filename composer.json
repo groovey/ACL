@@ -14,7 +14,8 @@
         "groovey/migration" : "dev-master",
         "groovey/db" : "dev-master",
         "groovey/seeder" : "dev-master",
-        "groovey/support" : "dev-master"
+        "groovey/support" : "dev-master",
+        "groovey/tester" : "dev-master"
     },
     "autoload": {
         "files": [
