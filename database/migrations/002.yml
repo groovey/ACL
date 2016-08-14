@@ -1,6 +1,6 @@
 date: '2016-07-01 00:00:00'
 author: Groovey
-description: User roles (super, admin, user, manager, tester)
+changelog: User roles (super, admin, user, manager, tester)
 
 up: >
 
