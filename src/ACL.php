@@ -42,7 +42,7 @@ class ACL
             $app['trace']->show(true);
             $app['trace']->debug('Unable to parse the YAML permission string:');
             $app['trace']->debug($e, true);
-            die();
+            exit();
         }
 
         return $this->yaml = $yaml;
@@ -76,11 +76,14 @@ class ACL
 
     public function allow($name, $allowDeny = 'allow')
     {
+        $app         = $this->app;
         $permissions = self::$permissions;
         $exist       = element($name, $permissions);
 
         if (!$exist) {
-            return false;
+            $app['trace']->show(true);
+            $app['trace']->debug("Permission does not exists - $name");
+            die();
         }
 
         $value = element('value', $permissions[$name]);
