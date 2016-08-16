@@ -23,9 +23,13 @@ class ACLTest extends PHPUnit_Framework_TestCase
         $app = new Application();
         $app['debug'] = true;
 
-        $app->register(new ACLServiceProvider());
         $app->register(new TesterServiceProvider());
         $app->register(new TraceServiceProvider());
+
+        $app->register(new ACLServiceProvider(), [
+                'acl.permissions' => getcwd().'/resources/yaml/permissions.yml',
+            ]);
+
         $app->register(new DBServiceProvider(), [
             'db.connection' => [
                 'host'      => 'localhost',
@@ -81,10 +85,10 @@ class ACLTest extends PHPUnit_Framework_TestCase
         $this->assertRegExp('/End seeding/', $display);
     }
 
-    public function testLoad()
+    public function testAuthorize()
     {
         $app = $this->app;
-        $app['acl']->load($userId = 1, getcwd().'/resources/yaml/permissions.yml');
+        $app['acl']->authorize($userId = 1);
     }
 
     public function testPermissions()

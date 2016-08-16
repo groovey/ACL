@@ -21,7 +21,9 @@ $app = new Application();
 $app['debug'] = true;
 
 $app->register(new TraceServiceProvider());
-$app->register(new ACLServiceProvider());
+$app->register(new ACLServiceProvider(),[
+        'acl.permissions' => getcwd().'/resources/yaml/permissions.yml',
+    ]);
 $app->register(new DBServiceProvider(), [
     'db.connection' => [
         'host'      => 'localhost',
@@ -38,7 +40,7 @@ $app->register(new DBServiceProvider(), [
 
 $app['db']->connection();
 
-$app['acl']->load($userId = 1, getcwd().'/resources/yaml/permissions.yml');
+$app['acl']->authorize($userId = 1);
 $app['acl']->allow('sample.view');
 $app['acl']->deny('sample.view');
 

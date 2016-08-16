@@ -13,7 +13,10 @@ class ACLServiceProvider implements ServiceProviderInterface, BootableProviderIn
     public function register(Container $app)
     {
         $app['acl'] = function ($app) {
-            return new ACL($app);
+
+            $permissions = $app['acl.permissions'];
+
+            return new ACL($app, $permissions);
         };
     }
 

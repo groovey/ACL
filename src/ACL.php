@@ -13,9 +13,11 @@ class ACL
     private $yaml;
     public static $permissions;
 
-    public function __construct(Container $app)
+    public function __construct(Container $app, $file)
     {
         $this->app = $app;
+
+        $this->load($file);
     }
 
     public static function setPermission($name, $key, $value)
@@ -28,7 +30,7 @@ class ACL
         return self::$permissions;
     }
 
-    public function load($userId, $file)
+    private function load($file)
     {
         $app = $this->app;
 
@@ -43,12 +45,10 @@ class ACL
             die();
         }
 
-        $this->yaml = $yaml;
-
-        return $this->getDBPermissions($userId);
+        return $this->yaml = $yaml;
     }
 
-    private function getDBPermissions($userId)
+    public function authorize($userId)
     {
         $app = $this->app;
 
