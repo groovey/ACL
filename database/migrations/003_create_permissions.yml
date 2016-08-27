@@ -4,6 +4,8 @@ changelog: A collection of user permissions base on a role.
 
 up: >
 
+    DROP TABLE IF EXISTS `permissions`;
+
     CREATE TABLE `permissions` (
      `role_id` int(11) NOT NULL,
      `node` varchar(50) NOT NULL,

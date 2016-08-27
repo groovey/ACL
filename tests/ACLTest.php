@@ -67,8 +67,8 @@ class ACLTest extends PHPUnit_Framework_TestCase
         $display = $app['tester']->command('migrate:reset')->input('Y\n')->execute()->display();
         $this->assertRegExp('/All migration entries has been cleared/', $display);
 
-        $display = $app['tester']->command('migrate:up')->execute()->display();
-        $this->assertRegExp('/Running migration file/', $display);
+        $display = $app['tester']->command('migrate:up')->input('Y\n')->execute()->display();
+        $this->assertRegExp('/003/', $display);
     }
 
     public function testSeed()
@@ -78,10 +78,10 @@ class ACLTest extends PHPUnit_Framework_TestCase
         $display = $app['tester']->command('seed:init')->execute()->display();
         $this->assertRegExp('/Sucessfully/', $display);
 
-        $display = $app['tester']->command('seed:run')->execute(['class' => 'Users', 'total' => 5])->display();
+        $display = $app['tester']->command('seed:run')->input('Y\n')->execute(['class' => 'Users', 'total' => 5])->display();
         $this->assertRegExp('/End seeding/', $display);
 
-        $display = $app['tester']->command('seed:run')->execute(['class' => 'Permissions', 'total' => 5])->display();
+        $display = $app['tester']->command('seed:run')->input('Y\n')->execute(['class' => 'Permissions', 'total' => 5])->display();
         $this->assertRegExp('/End seeding/', $display);
     }
 
@@ -135,7 +135,7 @@ class ACLTest extends PHPUnit_Framework_TestCase
         $app = $this->app;
 
         $display = $app['tester']->command('migrate:down')->input('Y\n')->execute(['version' => '001'])->display();
-        $this->assertRegExp('/Downgrading migration file/', $display);
+        $this->assertRegExp('/Downgrading/', $display);
 
         $display = $app['tester']->command('migrate:drop')->input('Y\n')->execute()->display();
         $this->assertRegExp('/Migrations table has been deleted/', $display);
