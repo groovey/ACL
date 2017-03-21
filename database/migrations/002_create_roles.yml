@@ -17,7 +17,7 @@ up: >
     (2, 'User', 'User rights'),
     (3, 'Manager', 'Manager rights'),
     (4, 'Tester', 'Tester rights'),
-    (5, 'Vistor', 'Visitor rights');
+    (5, 'Visitor', 'Visitor rights');
 
 down: >
 
