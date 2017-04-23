@@ -11,6 +11,7 @@
     "require": {
         "silex/silex" : "~2.0",
         "symfony/yaml" : "~3.0",
+        "groovey/console" : "dev-master",
         "groovey/migration" : "dev-master",
         "groovey/db" : "dev-master",
         "groovey/seeder" : "dev-master",
