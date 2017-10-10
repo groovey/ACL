@@ -1,7 +1,6 @@
 <?php
 
 use Silex\Application;
-use Symfony\Component\Console\Command\Command;
 use Groovey\ACL\Providers\ACLServiceProvider;
 use Groovey\DB\Providers\DBServiceProvider;
 use Groovey\Support\Providers\TraceServiceProvider;
@@ -54,35 +53,14 @@ class ACLTest extends PHPUnit_Framework_TestCase
                 new Drop($app),
             ]);
 
+        Database::create($app);
+
         $this->app = $app;
     }
 
-    public function testMigrate()
+    public function tearDown()
     {
-        $app = $this->app;
-
-        $display = $app['tester']->command('migrate:init')->execute()->display();
-        $this->assertRegExp('/Sucessfully/', $display);
-
-        $display = $app['tester']->command('migrate:reset')->input('Y\n')->execute()->display();
-        $this->assertRegExp('/All migration entries has been cleared/', $display);
-
-        $display = $app['tester']->command('migrate:up')->input('Y\n')->execute()->display();
-        $this->assertRegExp('/003/', $display);
-    }
-
-    public function testSeed()
-    {
-        $app = $this->app;
-
-        $display = $app['tester']->command('seed:init')->execute()->display();
-        $this->assertRegExp('/Sucessfully/', $display);
-
-        $display = $app['tester']->command('seed:run')->input('Y\n')->execute(['class' => 'Users', 'total' => 5])->display();
-        $this->assertRegExp('/End seeding/', $display);
-
-        $display = $app['tester']->command('seed:run')->input('Y\n')->execute(['class' => 'Permissions', 'total' => 5])->display();
-        $this->assertRegExp('/End seeding/', $display);
+        Database::drop($this->app);
     }
 
     public function testAuthorize()
@@ -128,16 +106,5 @@ class ACLTest extends PHPUnit_Framework_TestCase
         $app['acl']::setPermission('sample.view', 'value', 'deny');
         $status = deny('sample.view');
         $this->assertTrue($status);
-    }
-
-    public function testDrop()
-    {
-        $app = $this->app;
-
-        $display = $app['tester']->command('migrate:down')->input('Y\n')->execute(['version' => '001'])->display();
-        $this->assertRegExp('/Downgrading/', $display);
-
-        $display = $app['tester']->command('migrate:drop')->input('Y\n')->execute()->display();
-        $this->assertRegExp('/Migrations table has been deleted/', $display);
     }
 }
